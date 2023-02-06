@@ -1,6 +1,15 @@
 <?php
-$censored_word = $_GET['censure'];
+//Word
+$word = $_GET['word'];
+$trimmed_word = trim($word);
+//Paragraph
 $paragraph = $_GET['paragraph'];
+$trimmed_paragraph = trim($paragraph);
+$paragraph_length = strlen($trimmed_paragraph);
+//Censored
+$censored_paragraph = str_replace($word, '***', $trimmed_paragraph);
+$censored_paragraph_length = strlen($censored_paragraph);
+
 ?>
  
 <!DOCTYPE html>
@@ -14,8 +23,16 @@ $paragraph = $_GET['paragraph'];
     <title>Document</title>
 </head>
 <body>
-    <h2>Paragrafo Originale</h2>
-    <p><?= $paragraph; ?></p>
-    <p>ecco</p>
+    <div>
+        <h2>Paragrafo Originale</h2>
+        <p><?= $paragraph ?></p>
+        <p>Il paragrafo originale era lungo <strong><?= $paragraph_length ?></strong> caratteri</p>
+    </div>
+    <hr>
+    <div>
+        <h2>Paragrafo censurato</h2>
+        <p><?= $censored_paragraph ?></p>
+        <p>Il paragrafo censurato è lungo <strong><?= $censored_paragraph_length?></strong> caratteri</p>
+    </div>
 </body>
 </html>
